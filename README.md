@@ -1,215 +1,410 @@
-<h1><div align="center">
- <img alt="pipecat" width="300px" height="auto" src="https://raw.githubusercontent.com/pipecat-ai/pipecat/main/pipecat.png">
-</div></h1>
+# NVIDIA Pipecat Unified (Kotoba ASR + LiveToon TTS)
 
-[![PyPI](https://img.shields.io/pypi/v/pipecat-ai)](https://pypi.org/project/pipecat-ai) ![Tests](https://github.com/pipecat-ai/pipecat/actions/workflows/tests.yaml/badge.svg) [![codecov](https://codecov.io/gh/pipecat-ai/pipecat/graph/badge.svg?token=LNVUIVO4Y9)](https://codecov.io/gh/pipecat-ai/pipecat) [![Docs](https://img.shields.io/badge/Documentation-blue)](https://docs.pipecat.ai) [![Discord](https://img.shields.io/discord/1239284677165056021)](https://discord.gg/pipecat)
+[![NVIDIA Compatible](https://img.shields.io/badge/NVIDIA-Tokkio_5.0.0--ga-green)](https://docs.nvidia.com/ace/) [![Pipecat 0.0.68](https://img.shields.io/badge/Pipecat-0.0.68-blue)](https://github.com/pipecat-ai/pipecat) [![Japanese AI](https://img.shields.io/badge/Language-Japanese_AI-red)](https://github.com/kotoba-tech)
 
-# 🎙️ Pipecat: Real-Time Voice & Multimodal AI Agents
+**A unified Pipecat integration** combining Kotoba ASR (Japanese Speech-to-Text) and LiveToon TTS (Japanese Text-to-Speech) services, specifically optimized for **NVIDIA Tokkio Digital Human** applications.
 
-**Pipecat** is an open-source Python framework for building real-time voice and multimodal conversational agents. Orchestrate audio and video, AI services, different transports, and conversation pipelines effortlessly—so you can focus on what makes your agent unique.
+> **🚀 One-Command Setup**: `uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"`
 
-> Want to dive right in? [Install Pipecat](https://docs.pipecat.ai/getting-started/installation) then try the [quickstart](https://docs.pipecat.ai/getting-started/quickstart).
+## 🎯 Key Features
 
-## 🚀 What You Can Build
+- ✅ **Dual STT Options**: Choose between Kotoba ASR (Whisper-based) or LiveToon STT (Parakeet-based)
+- ✅ **High-Quality TTS**: LiveToon TTS with multiple Japanese voices and emotional control
+- ✅ **Single Installation**: One command installs all Japanese AI services
+- ✅ **NVIDIA Tokkio Compatible**: Fixed to Pipecat 0.0.68 for full compatibility  
+- ✅ **Japanese Optimized**: All services designed specifically for Japanese language
+- ✅ **Production Ready**: Tested and optimized for real-time Digital Human applications
+- ✅ **Simplified Build**: Replaces complex multi-step Docker builds with single dependency
 
-- **Voice Assistants** – natural, streaming conversations with AI
-- **AI Companions** – coaches, meeting assistants, characters
-- **Multimodal Interfaces** – voice, video, images, and more
-- **Interactive Storytelling** – creative tools with generative media
-- **Business Agents** – customer intake, support bots, guided flows
-- **Complex Dialog Systems** – design logic with structured conversations
+## 🏗️ What This Solves
 
-🧭 Looking to build structured conversations? Check out [Pipecat Flows](https://github.com/pipecat-ai/pipecat-flows) for managing complex conversational states and transitions.
-
-## 🧠 Why Pipecat?
-
-- **Voice-first**: Integrates speech recognition, text-to-speech, and conversation handling
-- **Pluggable**: Supports many AI services and tools
-- **Composable Pipelines**: Build complex behavior from modular components
-- **Real-Time**: Ultra-low latency interaction with different transports (e.g. WebSockets or WebRTC)
-
-## 🎬 See it in action
-
-<p float="left">
-    <a href="https://github.com/pipecat-ai/pipecat/tree/main/examples/simple-chatbot"><img src="https://raw.githubusercontent.com/pipecat-ai/pipecat/main/examples/simple-chatbot/image.png" width="400" /></a>&nbsp;
-    <a href="https://github.com/pipecat-ai/pipecat/tree/main/examples/storytelling-chatbot"><img src="https://raw.githubusercontent.com/pipecat-ai/pipecat/main/examples/storytelling-chatbot/image.png" width="400" /></a>
-    <br/>
-    <a href="https://github.com/pipecat-ai/pipecat/tree/main/examples/translation-chatbot"><img src="https://raw.githubusercontent.com/pipecat-ai/pipecat/main/examples/translation-chatbot/image.png" width="400" /></a>&nbsp;
-    <a href="https://github.com/pipecat-ai/pipecat/tree/main/examples/moondream-chatbot"><img src="https://raw.githubusercontent.com/pipecat-ai/pipecat/main/examples/moondream-chatbot/image.png" width="400" /></a>
-</p>
-
-## 📱 Client SDKs
-
-You can connect to Pipecat from any platform using our official SDKs:
-
-| Platform | SDK Repo                                                                       | Description                      |
-| -------- | ------------------------------------------------------------------------------ | -------------------------------- |
-| Web      | [pipecat-client-web](https://github.com/pipecat-ai/pipecat-client-web)         | JavaScript and React client SDKs |
-| iOS      | [pipecat-client-ios](https://github.com/pipecat-ai/pipecat-client-ios)         | Swift SDK for iOS                |
-| Android  | [pipecat-client-android](https://github.com/pipecat-ai/pipecat-client-android) | Kotlin SDK for Android           |
-| C++      | [pipecat-client-cxx](https://github.com/pipecat-ai/pipecat-client-cxx)         | C++ client SDK                   |
-
-## 🧩 Available services
-
-| Category            | Services                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Speech-to-Text      | [AssemblyAI](https://docs.pipecat.ai/server/services/stt/assemblyai), [AWS](https://docs.pipecat.ai/server/services/stt/aws), [Azure](https://docs.pipecat.ai/server/services/stt/azure), [Deepgram](https://docs.pipecat.ai/server/services/stt/deepgram), [Fal Wizper](https://docs.pipecat.ai/server/services/stt/fal), [Gladia](https://docs.pipecat.ai/server/services/stt/gladia), [Google](https://docs.pipecat.ai/server/services/stt/google), [Groq (Whisper)](https://docs.pipecat.ai/server/services/stt/groq), [OpenAI (Whisper)](https://docs.pipecat.ai/server/services/stt/openai), [Parakeet (NVIDIA)](https://docs.pipecat.ai/server/services/stt/parakeet), [Ultravox](https://docs.pipecat.ai/server/services/stt/ultravox), [Whisper](https://docs.pipecat.ai/server/services/stt/whisper)                                                                                                                                                                                                                                                                                            |
-| LLMs                | [Anthropic](https://docs.pipecat.ai/server/services/llm/anthropic), [AWS](https://docs.pipecat.ai/server/services/llm/aws), [Azure](https://docs.pipecat.ai/server/services/llm/azure), [Cerebras](https://docs.pipecat.ai/server/services/llm/cerebras), [DeepSeek](https://docs.pipecat.ai/server/services/llm/deepseek), [Fireworks AI](https://docs.pipecat.ai/server/services/llm/fireworks), [Gemini](https://docs.pipecat.ai/server/services/llm/gemini), [Grok](https://docs.pipecat.ai/server/services/llm/grok), [Groq](https://docs.pipecat.ai/server/services/llm/groq), [NVIDIA NIM](https://docs.pipecat.ai/server/services/llm/nim), [Ollama](https://docs.pipecat.ai/server/services/llm/ollama), [OpenAI](https://docs.pipecat.ai/server/services/llm/openai), [OpenRouter](https://docs.pipecat.ai/server/services/llm/openrouter), [Perplexity](https://docs.pipecat.ai/server/services/llm/perplexity), [Qwen](https://docs.pipecat.ai/server/services/llm/qwen), [Together AI](https://docs.pipecat.ai/server/services/llm/together)                                                 |
-| Text-to-Speech      | [AWS](https://docs.pipecat.ai/server/services/tts/aws), [Azure](https://docs.pipecat.ai/server/services/tts/azure), [Cartesia](https://docs.pipecat.ai/server/services/tts/cartesia), [Deepgram](https://docs.pipecat.ai/server/services/tts/deepgram), [ElevenLabs](https://docs.pipecat.ai/server/services/tts/elevenlabs), [FastPitch (NVIDIA)](https://docs.pipecat.ai/server/services/tts/fastpitch), [Fish](https://docs.pipecat.ai/server/services/tts/fish), [Google](https://docs.pipecat.ai/server/services/tts/google), [LMNT](https://docs.pipecat.ai/server/services/tts/lmnt), [MiniMax](https://docs.pipecat.ai/server/services/tts/minimax), [Neuphonic](https://docs.pipecat.ai/server/services/tts/neuphonic), [OpenAI](https://docs.pipecat.ai/server/services/tts/openai), [Piper](https://docs.pipecat.ai/server/services/tts/piper), [PlayHT](https://docs.pipecat.ai/server/services/tts/playht), [Rime](https://docs.pipecat.ai/server/services/tts/rime), [Sarvam](https://docs.pipecat.ai/server/services/tts/sarvam), [XTTS](https://docs.pipecat.ai/server/services/tts/xtts) |
-| Speech-to-Speech    | [AWS Nova Sonic](https://docs.pipecat.ai/server/services/s2s/aws), [Gemini Multimodal Live](https://docs.pipecat.ai/server/services/s2s/gemini), [OpenAI Realtime](https://docs.pipecat.ai/server/services/s2s/openai)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Transport           | [Daily (WebRTC)](https://docs.pipecat.ai/server/services/transport/daily), [FastAPI Websocket](https://docs.pipecat.ai/server/services/transport/fastapi-websocket), [SmallWebRTCTransport](https://docs.pipecat.ai/server/services/transport/small-webrtc), [WebSocket Server](https://docs.pipecat.ai/server/services/transport/websocket-server), Local                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Serializers         | [Plivo](https://docs.pipecat.ai/server/utilities/serializers/plivo), [Twilio](https://docs.pipecat.ai/server/utilities/serializers/twilio), [Telnyx](https://docs.pipecat.ai/server/utilities/serializers/telnyx)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Video               | [Tavus](https://docs.pipecat.ai/server/services/video/tavus), [Simli](https://docs.pipecat.ai/server/services/video/simli)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Memory              | [mem0](https://docs.pipecat.ai/server/services/memory/mem0)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Vision & Image      | [fal](https://docs.pipecat.ai/server/services/image-generation/fal), [Google Imagen](https://docs.pipecat.ai/server/services/image-generation/fal), [Moondream](https://docs.pipecat.ai/server/services/vision/moondream)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Audio Processing    | [Silero VAD](https://docs.pipecat.ai/server/utilities/audio/silero-vad-analyzer), [Krisp](https://docs.pipecat.ai/server/utilities/audio/krisp-filter), [Koala](https://docs.pipecat.ai/server/utilities/audio/koala-filter), [Noisereduce](https://docs.pipecat.ai/server/utilities/audio/noisereduce-filter)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Analytics & Metrics | [OpenTelemetry](https://docs.pipecat.ai/server/utilities/opentelemetry), [Sentry](https://docs.pipecat.ai/server/services/analytics/sentry)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-
-📚 [View full services documentation →](https://docs.pipecat.ai/server/services/supported-services)
-
-## ⚡ Getting started
-
-You can get started with Pipecat running on your local machine, then move your agent processes to the cloud when you’re ready.
-
-```shell
-# Install the module
-pip install pipecat-ai
-
-# Set up your environment
-cp dot-env.template .env
+**Before** (Complex Multi-Step Build):
+```bash
+git clone https://github.com/NVIDIA/ace-controller.git
+uv add "git+https://github.com/kotoba-tech/pipecat.git@feature/kotoba-asr#egg=pipecat-ai[kotoba]"
+cd /tmp && git clone https://github.com/livetoon-dev/pipecat.git
+cp /tmp/pipecat/src/pipecat/services/livetoon/* src/llm-rag/src/livetoon/
+# Version conflicts, unstable builds, crashes...
 ```
 
-To keep things lightweight, only the core framework is included by default. If you need support for third-party AI services, you can add the necessary dependencies with:
-
-```shell
-pip install "pipecat-ai[option,...]"
+**After** (Unified Solution):
+```bash
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+# Done! Both Kotoba ASR and LiveToon TTS ready to use
 ```
 
-## 🧪 Code examples
+## 📦 Installation
 
-- [Foundational](https://github.com/pipecat-ai/pipecat/tree/main/examples/foundational) — small snippets that build on each other, introducing one or two concepts at a time
-- [Example apps](https://github.com/pipecat-ai/pipecat/tree/main/examples/) — complete applications that you can use as starting points for development
+### Prerequisites
+- Python 3.10+
+- [uv](https://docs.astral.sh/uv/) package manager  
+- NVIDIA Tokkio 5.0.0-ga environment
 
-## 🛠️ Hacking on the framework itself
-
-1. Set up a virtual environment before following these instructions. From the root of the repo:
-
-   ```shell
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-2. Install the development dependencies:
-
-   ```shell
-   pip install -r dev-requirements.txt
-   ```
-
-3. Install the git pre-commit hooks (these help ensure your code follows project rules):
-
-   ```shell
-   pre-commit install
-   ```
-
-4. Install the `pipecat-ai` package locally in editable mode:
-
-   ```shell
-   pip install -e .
-   ```
-
-   > The `-e` or `--editable` option allows you to modify the code without reinstalling.
-
-5. Include optional dependencies as needed. For example:
-
-   ```shell
-   pip install -e ".[daily,deepgram,cartesia,openai,silero]"
-   ```
-
-6. (Optional) If you want to use this package from another directory:
-
-   ```shell
-   pip install "path_to_this_repo[option,...]"
-   ```
-
-### Running tests
-
-Install the test dependencies:
-
-```shell
-pip install -r test-requirements.txt
+### Install with uv
+```bash
+# Install with both Kotoba ASR and LiveToon TTS
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
 ```
 
-From the root directory, run:
+### Manual Installation
+```bash
+# Clone repository
+git clone https://github.com/livetoon-dev/nvidia-pipecat-unified.git
+cd nvidia-pipecat-unified
 
-```shell
-pytest
+# Install with uv
+uv sync --extra livetoon
 ```
 
-### Setting up your editor
+## 🔨 Usage Examples
 
-This project uses strict [PEP 8](https://peps.python.org/pep-0008/) formatting via [Ruff](https://github.com/astral-sh/ruff).
+### Complete ASR + TTS Pipeline (Option 1: Kotoba ASR + LiveToon TTS)
+```python
+import asyncio
+from pipecat.services.kotoba.stt import KotobaASRService
+from pipecat.services.livetoon.tts import LivetoonTTSService
+from pipecat.services.openai.llm import OpenAILLMService
+from pipecat.transports.daily_transport import DailyTransport
+from pipecat.pipeline.pipeline import Pipeline
 
-#### Emacs
+async def main():
+    # Kotoba Japanese ASR (Speech-to-Text)
+    stt = KotobaASRService(
+        model="kotoba-whisper-v1.0",
+        language="ja"
+    )
+    
+    # LiveToon Japanese TTS (Text-to-Speech)
+    tts = LivetoonTTSService(
+        api_url="https://livetoon-tts.dev-livetoon.com",
+        voice_id="default",
+        sample_rate=24000
+    )
+    
+    # LLM processing
+    llm = OpenAILLMService(
+        api_key="your-openai-key",
+        model="gpt-4"
+    )
+    
+    # Set up complete pipeline
+    transport = DailyTransport(...)
+    pipeline = Pipeline([transport, stt, llm, tts])
+    
+    await pipeline.run()
 
-You can use [use-package](https://github.com/jwiegley/use-package) to install [emacs-lazy-ruff](https://github.com/christophermadsen/emacs-lazy-ruff) package and configure `ruff` arguments:
-
-```elisp
-(use-package lazy-ruff
-  :ensure t
-  :hook ((python-mode . lazy-ruff-mode))
-  :config
-  (setq lazy-ruff-format-command "ruff format")
-  (setq lazy-ruff-check-command "ruff check --select I"))
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
-`ruff` was installed in the `venv` environment described before, so you should be able to use [pyvenv-auto](https://github.com/ryotaro612/pyvenv-auto) to automatically load that environment inside Emacs.
+### Complete Pipeline (Option 2: LiveToon ASR + LiveToon TTS)
+```python
+import asyncio
+from pipecat.services.livetoon.stt import LiveToonSTTService
+from pipecat.services.livetoon.tts import LivetoonTTSService
+from pipecat.services.openai.llm import OpenAILLMService
+from pipecat.transports.daily_transport import DailyTransport
+from pipecat.pipeline.pipeline import Pipeline
 
-```elisp
-(use-package pyvenv-auto
-  :ensure t
-  :defer t
-  :hook ((python-mode . pyvenv-auto-run)))
+async def main():
+    # LiveToon Japanese ASR (Speech-to-Text) - NEW!
+    stt = LiveToonSTTService(
+        api_url="https://livetoon-stt.dev-livetoon.com",
+        sample_rate=16000,
+        params=LiveToonSTTService.InputParams(
+            decoding_type="tdt",
+            confidence_threshold=0.7,
+            buffer_duration=2.0
+        )
+    )
+    
+    # LiveToon Japanese TTS (Text-to-Speech)
+    tts = LivetoonTTSService(
+        api_url="https://livetoon-tts.dev-livetoon.com",
+        voice_id="default",
+        sample_rate=24000
+    )
+    
+    # LLM processing
+    llm = OpenAILLMService(
+        api_key="your-openai-key",
+        model="gpt-4"
+    )
+    
+    # Set up complete pipeline
+    transport = DailyTransport(...)
+    pipeline = Pipeline([transport, stt, llm, tts])
+    
+    await pipeline.run()
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
-#### Visual Studio Code
+### Individual Service Examples
 
-Install the
-[Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) extension. Then edit the user settings (_Ctrl-Shift-P_ `Open User Settings (JSON)`) and set it as the default Python formatter, and enable formatting on save:
+#### Kotoba ASR Only
+```python
+from pipecat.services.kotoba.stt import KotobaASRService
 
-```json
-"[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
-    "editor.formatOnSave": true
+stt = KotobaASRService(
+    model="kotoba-whisper-v1.0",
+    language="ja",
+    sample_rate=16000
+)
+```
+
+#### LiveToon STT Only (NEW!)
+```python
+from pipecat.services.livetoon.stt import LiveToonSTTService
+
+stt = LiveToonSTTService(
+    api_url="https://livetoon-stt.dev-livetoon.com",
+    sample_rate=16000,
+    params=LiveToonSTTService.InputParams(
+        decoding_type="tdt",       # "tdt" or "ctc"
+        confidence_threshold=0.7,  # 0.0-1.0
+        buffer_duration=2.0        # seconds
+    )
+)
+```
+
+#### LiveToon TTS Only
+```python
+from pipecat.services.livetoon.tts import LivetoonTTSService
+
+tts = LivetoonTTSService(
+    api_url="https://livetoon-tts.dev-livetoon.com",
+    voice_id="yasaike",  # Available: default, men, yasaike, zange, uranai
+    alpha=0.5,           # Voice style (0.0-1.0)
+    beta=0.8,            # Voice emotion (0.0-1.0)
+    speed=1.2            # Speech speed (0.1-4.0)
+)
+```
+
+## 🎯 NVIDIA Tokkio Integration
+
+### Updated Dockerfile
+Replace complex multi-step build process with single unified dependency:
+
+```dockerfile
+FROM python:3.10-slim
+
+# Install uv
+RUN pip install uv
+
+# Install unified pipecat (replaces complex multi-repo setup)
+RUN uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+
+# Copy application code
+COPY . /app
+WORKDIR /app
+
+# Run application
+CMD ["python", "main.py"]
+```
+
+### Simplified Build Process
+```bash
+# OLD: Complex multi-step process
+## git clone https://github.com/NVIDIA/ace-controller.git
+## uv add "git+https://github.com/kotoba-tech/pipecat.git@feature/kotoba-asr#egg=pipecat-ai[kotoba]"
+## uv sync && rm -rf .venv && cd ..
+## cp /tmp/pipecat/src/pipecat/services/livetoon/* src/llm-rag/src/livetoon/
+## docker build --no-cache --build-context ace-controller=../ace-controller -t ace-controller:5.0.0-kotoba .
+
+# NEW: Single command
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+docker build -t ace-controller:5.0.0-unified .
+```
+
+## ⚠️ Troubleshooting
+
+### Common Issues
+
+#### 1. Version Conflicts
+```bash
+Error: Package version conflicts detected
+```
+**Solution:** This package uses Pipecat 0.0.68-compatible dependencies. Remove other Pipecat installations:
+```bash
+uv remove pipecat-ai
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+```
+
+#### 2. Import Errors
+```python
+ImportError: No module named 'pipecat.services.kotoba'
+```
+**Solution:** Ensure you installed with the `livetoon` extra:
+```bash
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+```
+
+#### 3. NVIDIA Tokkio Compatibility Issues
+```bash
+Error: Incompatible pipecat version
+```
+**Solution:** This package is fixed to Pipecat 0.0.68 for NVIDIA Tokkio compatibility. Do not upgrade.
+
+#### 4. LiveToon TTS API Connection
+```bash
+Error: Failed to connect to LiveToon TTS API
+```
+**Solution:** Verify API URL and credentials:
+```python
+tts = LivetoonTTSService(
+    api_url="https://livetoon-tts.dev-livetoon.com",  # Correct URL
+    api_key="your-api-key"  # If required
+)
+```
+
+### Environment Variables
+```bash
+# LiveToon TTS API (if required)
+export LIVETOON_TTS_API_KEY="your-tts-api-key"
+export LIVETOON_TTS_API_URL="https://livetoon-tts.dev-livetoon.com"
+
+# LiveToon STT API (if required)
+export LIVETOON_STT_API_KEY="your-stt-api-key"
+export LIVETOON_STT_API_URL="https://livetoon-stt.dev-livetoon.com"
+
+# Kotoba ASR configuration
+export KOTOBA_MODEL_PATH="/path/to/model"
+```
+
+## 🧪 Testing
+
+### Basic Import Test
+```bash
+python -c "from pipecat.services.kotoba.stt import KotobaASRService; print('✅ Kotoba ASR: OK')"
+python -c "from pipecat.services.livetoon.stt import LiveToonSTTService; print('✅ LiveToon STT: OK')"
+python -c "from pipecat.services.livetoon.tts import LivetoonTTSService; print('✅ LiveToon TTS: OK')"
+```
+
+### Full Integration Test
+```python
+import asyncio
+from pipecat.services.kotoba.stt import KotobaASRService
+from pipecat.services.livetoon.stt import LiveToonSTTService
+from pipecat.services.livetoon.tts import LivetoonTTSService
+
+async def test_integration():
+    # Test Kotoba ASR
+    kotoba_stt = KotobaASRService(model="kotoba-whisper-v1.0", language="ja")
+    print("✅ Kotoba ASR initialized")
+    
+    # Test LiveToon STT
+    livetoon_stt = LiveToonSTTService(api_url="https://livetoon-stt.dev-livetoon.com")
+    print("✅ LiveToon STT initialized")
+    
+    # Test LiveToon TTS
+    livetoon_tts = LivetoonTTSService(api_url="https://livetoon-tts.dev-livetoon.com")
+    print("✅ LiveToon TTS initialized")
+    
+    print("🎉 All services integration test passed!")
+
+if __name__ == "__main__":
+    asyncio.run(test_integration())
+```
+
+### LiveToon STT API Test
+```python
+# Test with actual audio file
+import asyncio
+import aiohttp
+
+async def test_livetoon_stt():
+    async with aiohttp.ClientSession() as session:
+        with open("audio.mp3", "rb") as f:
+            audio_data = f.read()
+        
+        data = aiohttp.FormData()
+        data.add_field('file', audio_data, filename='audio.mp3', content_type='audio/mpeg')
+        data.add_field('decoding_type', 'tdt')
+        
+        async with session.post('https://livetoon-stt.dev-livetoon.com/transcribe', data=data) as response:
+            result = await response.json()
+            print(f"Transcription: {result.get('text')}")
+            print(f"Confidence: {result.get('confidence')}")
+
+asyncio.run(test_livetoon_stt())
+```
+
+## 🔧 Configuration
+
+### Kotoba ASR Configuration
+```python
+stt_config = {
+    "model": "kotoba-whisper-v1.0",        # Available models
+    "language": "ja",                       # Japanese language
+    "sample_rate": 16000,                   # Audio sample rate
+    "chunk_size": 8192                      # Processing chunk size
 }
 ```
 
-#### PyCharm
+### LiveToon TTS Configuration
+```python
+tts_config = {
+    "api_url": "https://livetoon-tts.dev-livetoon.com",
+    "voice_id": "default",                  # default, men, yasaike, zange, uranai
+    "alpha": 0.3,                          # Voice style control (0.0-1.0)
+    "beta": 0.7,                           # Voice emotion control (0.0-1.0)
+    "speed": 1.0,                          # Speech speed (0.1-4.0)
+    "sample_rate": 24000,                  # Audio output sample rate
+    "language": "ja"                       # Japanese language
+}
+```
 
-`ruff` was installed in the `venv` environment described before, now to enable autoformatting on save, go to `File` -> `Settings` -> `Tools` -> `File Watchers` and add a new watcher with the following settings:
+## 📈 Version Information
 
-1. **Name**: `Ruff formatter`
-2. **File type**: `Python`
-3. **Working directory**: `$ContentRoot$`
-4. **Arguments**: `format $FilePath$`
-5. **Program**: `$PyInterpreterDirectory$/ruff`
+- **Base**: Pipecat 0.0.68 (NVIDIA Tokkio compatible)
+- **Kotoba ASR**: Based on [kotoba-tech/pipecat@feature/kotoba-asr](https://github.com/kotoba-tech/pipecat/tree/feature/kotoba-asr)
+- **LiveToon TTS**: Based on [livetoon-dev/pipecat](https://github.com/livetoon-dev/pipecat)
+- **Python**: 3.10+
+- **Dependencies**: All fixed to 0.0.68-compatible versions
 
-## 🤝 Contributing
+## 🔧 Development
 
-We welcome contributions from the community! Whether you're fixing bugs, improving documentation, or adding new features, here's how you can help:
+### Local Development Setup
+```bash
+# Clone and setup
+git clone https://github.com/livetoon-dev/nvidia-pipecat-unified.git
+cd nvidia-pipecat-unified
 
-- **Found a bug?** Open an [issue](https://github.com/pipecat-ai/pipecat/issues)
-- **Have a feature idea?** Start a [discussion](https://discord.gg/pipecat)
-- **Want to contribute code?** Check our [CONTRIBUTING.md](CONTRIBUTING.md) guide
-- **Documentation improvements?** [Docs](https://github.com/pipecat-ai/docs) PRs are always welcome
+# Install in development mode
+uv sync --extra livetoon
+```
 
-Before submitting a pull request, please check existing issues and PRs to avoid duplicates.
+### Generate uv.lock for Reproducible Builds
+```bash
+# Generate lock file for dependency stability
+uv lock
+```
 
-We aim to review all contributions promptly and provide constructive feedback to help get your changes merged.
+## 📄 License
 
-## 🛟 Getting help
+- **Pipecat**: BSD-2-Clause License
+- **LiveToon TTS**: MIT License  
+- **This Integration**: MIT License
 
-➡️ [Join our Discord](https://discord.gg/pipecat)
+## 🤝 Support & Contributing
 
-➡️ [Read the docs](https://docs.pipecat.ai)
+### Support Channels
+For issues related to:
+- **NVIDIA Tokkio Integration**: [Create issue in this repository](https://github.com/livetoon-dev/nvidia-pipecat-unified/issues)
+- **Kotoba ASR**: [kotoba-tech/pipecat](https://github.com/kotoba-tech/pipecat)
+- **LiveToon TTS**: [livetoon-dev/pipecat](https://github.com/livetoon-dev/pipecat)
 
-➡️ [Reach us on X](https://x.com/pipecat_ai)
+### Contributing
+1. Fork this repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make changes ensuring 0.0.68 compatibility
+4. Test with NVIDIA Tokkio
+5. Submit pull request
+
+---
+
+**⚠️ Important Notice**: This package is specifically designed for NVIDIA Tokkio compatibility using Pipecat 0.0.68. Do not upgrade to newer Pipecat versions without thorough testing of the entire Tokkio stack.
+
+**🚀 Quick Start**: `uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"`
