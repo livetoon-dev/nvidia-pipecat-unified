@@ -134,7 +134,9 @@ class LivetoonTTSService(TTSService):
         self._source_sample_rate = 24000
         self._resampler = None
         if self._sample_rate != self._source_sample_rate:
-            self._resampler = create_default_resampler()
+            self._resampler = create_default_resampler(
+                input_sample_rate=self._source_sample_rate, output_sample_rate=self._sample_rate
+            )
 
         logger.info(
             f"Initialized Livetoon TTS Service - URL: {self._api_url}, Voice: {voice_id}, Sample Rate: {sample_rate}"
@@ -409,9 +411,7 @@ class LivetoonTTSService(TTSService):
             # Resample if needed
             if self._resampler:
                 # Resample from 24kHz to target sample rate
-                resampled_data = self._resampler.resample(
-                    pcm_data, self._source_sample_rate, self._sample_rate
-                )
+                resampled_data = self._resampler.resample(pcm_data)
                 logger.debug(
                     f"Resampled {len(pcm_data)} bytes @ {self._source_sample_rate}Hz to {len(resampled_data)} bytes @ {self._sample_rate}Hz"
                 )
