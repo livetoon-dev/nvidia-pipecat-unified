@@ -4,7 +4,7 @@
 
 **A unified Pipecat integration** combining Kotoba ASR (Japanese Speech-to-Text) and LiveToon TTS (Japanese Text-to-Speech) services, specifically optimized for **NVIDIA Tokkio Digital Human** applications.
 
-> **🚀 One-Command Setup**: `uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"`
+> **🚀 One-Command Setup**: `uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified.git@feature/livetoon-0.0.68"`
 
 ## 🎯 Key Features
 
@@ -29,7 +29,7 @@ cp /tmp/pipecat/src/pipecat/services/livetoon/* src/llm-rag/src/livetoon/
 
 **After** (Unified Solution):
 ```bash
-uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified.git@feature/livetoon-0.0.68"
 # Done! Both Kotoba ASR and LiveToon TTS ready to use
 ```
 
@@ -43,7 +43,7 @@ uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipeca
 ### Install with uv
 ```bash
 # Install with both Kotoba ASR and LiveToon TTS
-uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified.git@feature/livetoon-0.0.68"
 ```
 
 ### Manual Installation
@@ -194,7 +194,7 @@ FROM python:3.10-slim
 RUN pip install uv
 
 # Install unified pipecat (replaces complex multi-repo setup)
-RUN uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+RUN uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified.git@feature/livetoon-0.0.68"
 
 # Copy application code
 COPY . /app
@@ -214,7 +214,7 @@ CMD ["python", "main.py"]
 ## docker build --no-cache --build-context ace-controller=../ace-controller -t ace-controller:5.0.0-kotoba .
 
 # NEW: Single command
-uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified.git@feature/livetoon-0.0.68"
 docker build -t ace-controller:5.0.0-unified .
 ```
 
@@ -229,7 +229,7 @@ Error: Package version conflicts detected
 **Solution:** This package uses Pipecat 0.0.68-compatible dependencies. Remove other Pipecat installations:
 ```bash
 uv remove pipecat-ai
-uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified.git@feature/livetoon-0.0.68"
 ```
 
 #### 2. Import Errors
@@ -238,7 +238,7 @@ ImportError: No module named 'pipecat.services.kotoba'
 ```
 **Solution:** Ensure you installed with the `livetoon` extra:
 ```bash
-uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"
+uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified.git@feature/livetoon-0.0.68"
 ```
 
 #### 3. NVIDIA Tokkio Compatibility Issues
@@ -407,4 +407,4 @@ For issues related to:
 
 **⚠️ Important Notice**: This package is specifically designed for NVIDIA Tokkio compatibility using Pipecat 0.0.68. Do not upgrade to newer Pipecat versions without thorough testing of the entire Tokkio stack.
 
-**🚀 Quick Start**: `uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified"`
+**🚀 Quick Start**: `uv add "pipecat-ai[livetoon] @ git+https://github.com/livetoon-dev/nvidia-pipecat-unified.git@feature/livetoon-0.0.68"`
