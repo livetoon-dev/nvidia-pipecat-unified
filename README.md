@@ -9,6 +9,7 @@
 ## 🎯 Key Features
 
 - ✅ **Dual STT Options**: Choose between Kotoba ASR (Whisper-based) or LiveToon STT (Parakeet-based)
+- ✅ **VAD-Based STT**: LiveToon STT uses Voice Activity Detection for dynamic buffering
 - ✅ **High-Quality TTS**: LiveToon TTS with multiple Japanese voices and emotional control
 - ✅ **Single Installation**: One command installs all Japanese AI services
 - ✅ **NVIDIA Tokkio Compatible**: Fixed to Pipecat 0.0.68 for full compatibility  
@@ -114,7 +115,8 @@ async def main():
         params=LiveToonSTTService.InputParams(
             decoding_type="tdt",
             confidence_threshold=0.7,
-            buffer_duration=2.0
+            vad_enabled=True,
+            silence_threshold=1.0
         )
     )
     
@@ -162,9 +164,10 @@ stt = LiveToonSTTService(
     api_url="https://livetoon-stt.dev-livetoon.com",
     sample_rate=16000,
     params=LiveToonSTTService.InputParams(
-        decoding_type="tdt",       # "tdt" or "ctc"
-        confidence_threshold=0.7,  # 0.0-1.0
-        buffer_duration=2.0        # seconds
+        decoding_type="tdt",        # "tdt" or "ctc"  
+        confidence_threshold=0.7,   # 0.0-1.0
+        vad_enabled=True,          # Use VAD-based dynamic buffering
+        silence_threshold=1.0       # Silence duration to trigger transcription
     )
 )
 ```
@@ -308,19 +311,58 @@ if __name__ == "__main__":
     asyncio.run(test_integration())
 ```
 
-### LiveToon STT API Test
+### LiveToon STT VAD-Based Processing Test
 ```python
-# Test with actual audio file
+# Test with VAD-based dynamic buffering
+import asyncio
+from pipecat.services.livetoon.stt import LiveToonSTTService
+from pipecat.frames.frames import StartFrame, UserStartedSpeakingFrame, UserStoppedSpeakingFrame
+from pipecat.processors.frame_processor import FrameDirection
+
+async def test_livetoon_stt_vad():
+    # Create STT service with VAD enabled
+    stt = LiveToonSTTService(
+        api_url="https://livetoon-stt.dev-livetoon.com",
+        sample_rate=16000,
+        params=LiveToonSTTService.InputParams(
+            vad_enabled=True,
+            confidence_threshold=0.5,
+            silence_threshold=1.0
+        )
+    )
+    
+    await stt.start(StartFrame())
+    
+    # Simulate VAD-triggered processing
+    await stt.process_frame(UserStartedSpeakingFrame(), FrameDirection.DOWNSTREAM)
+    
+    # Process audio chunks (example with your audio data)
+    with open("audio.wav", "rb") as f:
+        audio_data = f.read()
+        chunk_size = 1024
+        for i in range(0, len(audio_data), chunk_size):
+            chunk = audio_data[i:i+chunk_size]
+            await stt.run_stt(chunk)
+    
+    # Trigger transcription when speech stops
+    await stt.process_frame(UserStoppedSpeakingFrame(), FrameDirection.DOWNSTREAM)
+
+asyncio.run(test_livetoon_stt_vad())
+```
+
+### LiveToon STT Direct API Test
+```python
+# Test direct API call (without VAD)
 import asyncio
 import aiohttp
 
-async def test_livetoon_stt():
+async def test_livetoon_stt_direct():
     async with aiohttp.ClientSession() as session:
-        with open("audio.mp3", "rb") as f:
+        with open("audio.wav", "rb") as f:
             audio_data = f.read()
         
         data = aiohttp.FormData()
-        data.add_field('file', audio_data, filename='audio.mp3', content_type='audio/mpeg')
+        data.add_field('file', audio_data, filename='audio.wav', content_type='audio/wav')
         data.add_field('decoding_type', 'tdt')
         
         async with session.post('https://livetoon-stt.dev-livetoon.com/transcribe', data=data) as response:
@@ -328,7 +370,7 @@ async def test_livetoon_stt():
             print(f"Transcription: {result.get('text')}")
             print(f"Confidence: {result.get('confidence')}")
 
-asyncio.run(test_livetoon_stt())
+asyncio.run(test_livetoon_stt_direct())
 ```
 
 ## 🔧 Configuration
